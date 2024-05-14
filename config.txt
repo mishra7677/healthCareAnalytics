@@ -1,0 +1,5 @@
+   'bootstrap.servers': 'pkc-56d1g.eastus.azure.confluent.cloud:9092',  # Update with your Confluent Kafka bootstrap servers
+    'sasl.mechanism': 'PLAIN',
+    'security.protocol': 'SASL_SSL',
+    'sasl.username': 'H2OXE2ZKKZNIVY2Z',  # Update with your Confluent Kafka username
+    'sasl.password': 'Oo94M2e093GSZNf0pLkI2lQrOdi0kzEyh/hAmOFQcGJQ1t6yZO7TImh5JVO+FkCG', 
