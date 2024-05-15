@@ -1,15 +1,17 @@
 from confluent_kafka import Producer, KafkaError,Consumer
+from dotenv import load_dotenv
 from datetime import datetime
 from faker import Faker
 import pandas as pd
 import random
 import json
 import time
+import os
 
 # Initialize Faker
 f = Faker()
 try:
-    PATH=r"C:\Users\Alok mishra\Desktop\sql_project\ecom-analytics\data/patient.json"
+    PATH=r"C:\Users\Alok mishra\Desktop\sql_project\New Folder\data/patient.json"
     df = pd.read_json(PATH, typ="series")
     df = df.to_frame(name='key').reset_index(drop=True)
 
@@ -19,10 +21,21 @@ try:
 except Exception as e:
     print("Error occured :  {e}")
 
+load_dotenv()
 
 conf = {
-      # Update with your Confluent Kafka password
+    'bootstrap.servers': f"{os.getenv('bootstrap')}",
+    'security.protocol': f"{os.getenv('protocol')}",
+    'sasl.mechanisms': f"{os.getenv('mechanism')}",
+    'sasl.username': f"{os.getenv('api_key')}",
+    'sasl.password': f"{os.getenv('password')}"
 }
+
+print(os.getenv('bootstrap'))
+print(os.getenv('protocol'))
+print(os.getenv('mechanism'))
+print(os.getenv('api_key'))
+print(os.getenv('password'))
 producer = Producer(conf)
 
 
